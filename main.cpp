@@ -1,41 +1,37 @@
-#include <iostream>
-#include <vector>
-#include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
 #include <time.h>
+
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 #include <chrono>
+#include <iostream>
 #include <thread>
+#include <vector>
 
-#include "math.h"
 #include "config.h"
-
+#include "math.h"
 
 using namespace std::this_thread;
 using namespace std::chrono;
 
 void drawTriangle2(sf::RenderWindow& win, Triangle2 t) {
   sf::Vertex ab[] = {
-    sf::Vertex( sf::Vector2f(t[0].x * SCALE + OFFSET.x, t[0].y * SCALE + OFFSET.y) ),
-    sf::Vertex( sf::Vector2f(t[1].x * SCALE + OFFSET.x, t[1].y * SCALE + OFFSET.y) )
-  };
+      sf::Vertex(sf::Vector2f(t[0].x * SCALE + OFFSET.x, t[0].y * SCALE + OFFSET.y)),
+      sf::Vertex(sf::Vector2f(t[1].x * SCALE + OFFSET.x, t[1].y * SCALE + OFFSET.y))};
   sf::Vertex bc[] = {
-    sf::Vertex( sf::Vector2f(t[1].x * SCALE + OFFSET.x, t[1].y * SCALE + OFFSET.y) ),
-    sf::Vertex( sf::Vector2f(t[2].x * SCALE + OFFSET.x, t[2].y * SCALE + OFFSET.y) )
-  };
+      sf::Vertex(sf::Vector2f(t[1].x * SCALE + OFFSET.x, t[1].y * SCALE + OFFSET.y)),
+      sf::Vertex(sf::Vector2f(t[2].x * SCALE + OFFSET.x, t[2].y * SCALE + OFFSET.y))};
   sf::Vertex ac[] = {
-    sf::Vertex( sf::Vector2f(t[0].x * SCALE + OFFSET.x, t[0].y * SCALE + OFFSET.y) ),
-    sf::Vertex( sf::Vector2f(t[2].x * SCALE + OFFSET.x, t[2].y * SCALE + OFFSET.y) )
-  };
+      sf::Vertex(sf::Vector2f(t[0].x * SCALE + OFFSET.x, t[0].y * SCALE + OFFSET.y)),
+      sf::Vertex(sf::Vector2f(t[2].x * SCALE + OFFSET.x, t[2].y * SCALE + OFFSET.y))};
   win.draw(ab, 2, sf::Lines);
   win.draw(bc, 2, sf::Lines);
   win.draw(ac, 2, sf::Lines);
 }
 void renderTriangle3(sf::RenderWindow& win, Triangle3 t3) {
   Triangle2 t2 = {
-    Vec2(t3[0].x, t3[0].y),
-    Vec2(t3[1].x, t3[1].y),
-    Vec2(t3[2].x, t3[2].y)
-  };
+      Vec2(t3[0].x, t3[0].y),
+      Vec2(t3[1].x, t3[1].y),
+      Vec2(t3[2].x, t3[2].y)};
   drawTriangle2(win, t2);
 }
 
